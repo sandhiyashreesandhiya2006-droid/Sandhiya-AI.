@@ -49,13 +49,16 @@ for message in st.session_state.messages:
 
 
 with st.sidebar:
+    st.markdown("### 📎 Upload File")
+
     uploaded_file = st.file_uploader(
-        "📎 Upload File"
+        "",
+        label_visibility="collapsed"
     )
 
-if st.button("🗑️ Clear Chat"):
-    st.session_state.messages = []
-    st.rerun()
+    if st.button("🗑️ Clear Chat"):
+        st.session_state.messages = []
+        st.rerun()
     
 
 # =========================
