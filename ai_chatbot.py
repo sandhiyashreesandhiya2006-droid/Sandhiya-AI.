@@ -125,7 +125,7 @@ User Question:
 """
 
     try:
-        response = model.generate_content(prompt)
+        response=model.generate_content(prompt)
     answer = response.text
 
     except Exception:
