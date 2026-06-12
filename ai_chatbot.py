@@ -53,7 +53,7 @@ with st.sidebar:
         "📎 Upload File"
     )
 
-    if st.button("🗑️ Clear Chat"):
+if st.button("🗑️ Clear Chat"):
     st.session_state.messages = []
     st.rerun()
     
