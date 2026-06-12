@@ -33,6 +33,11 @@ st.markdown(
     <p style='text-align:center;'>
         Created by Sandhiya Shree
     </p>
+
+    <p style='text-align:center;color:gray;'>
+    Powered by AI, Crafted by Sandhiya Shree
+</p>
+
     """,
     unsafe_allow_html=True
 )
