@@ -142,7 +142,7 @@ This happens when too many requests are sent in a short time.
         {"role": "assistant", "content": answer}
     )
 
-    with st.chat_message("assistant"):
+with st.chat_message("assistant"):
 
     message_placeholder = st.empty()
     full_response = ""
