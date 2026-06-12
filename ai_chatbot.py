@@ -27,16 +27,16 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # =========================
 st.markdown(
     """
-    <h1 style='text-align:center;color:#4F46E5;'>
-        🤖 Sandhiya AI
-    </h1>
-    <p style='text-align:center;'>
-        Created by Sandhiya Shree
-    </p>
+    <div style='text-align:center;'>
+        <h1 style='color:#4F46E5;'>🤖 Sandhiya AI</h1>
+        <h3>Created by Sandhiya Shree</h3>
+        <h4 style='color:#333333;'>
+            ✨ Powered by AI, Crafted by Sandhiya Shree ✨
+        </h4>
+    </div>
     """,
     unsafe_allow_html=True
 )
-st.caption("Powered by AI, Crafted by Sandhiya Shree")
 
 # =========================
 # CHAT HISTORY
