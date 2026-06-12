@@ -129,9 +129,8 @@ User Question:
     answer = response.text
 
 except Exception:
-    answer = "⚠️ Sandhiya API limit reached.\n\nPlease wait for a minute and try again.\n\nThis happens when too many requests are sent in a short time."
+    answer = "⚠️ Sandhiya API limit reached."
 
-# Assistant message
 st.session_state.messages.append(
     {"role": "assistant", "content": answer}
 )
