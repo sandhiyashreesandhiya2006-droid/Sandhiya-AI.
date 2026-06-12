@@ -125,25 +125,19 @@ User Question:
 """
 
     try:
-        response = model.generate_content(prompt)
-        answer = response.text
+    response = model.generate_content(prompt)
+    answer = response.text
 
-    except Exception:
-        answer = """
-⚠️ Sandhiya API limit reached.
+except Exception:
+    answer = "⚠️ Sandhiya API limit reached.\n\nPlease wait for a minute and try again.\n\nThis happens when too many requests are sent in a short time."
 
-Please wait for a minute and try again.
-
-This happens when too many requests are sent in a short time.
-"""
-
-    # Assistant message
-    st.session_state.messages.append(
-        {"role": "assistant", "content": answer}
-    )
+# Assistant message
+st.session_state.messages.append(
+    {"role": "assistant", "content": answer}
+)
 
 with st.chat_message("assistant"):
-      st.markdown(answer)
+    st.markdown(answer)
 
  
 
