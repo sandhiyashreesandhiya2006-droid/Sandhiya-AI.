@@ -124,19 +124,14 @@ User Question:
 {user_input}
 """
 
-    try:
-        response = model.generate_content(prompt)
-    answer = response.text
-
-    except Exception:
-        answer = "⚠️ Sandhiya API limit reached."
-
+    response = model.generate_content(prompt)
+answer = response.text
+   
     st.session_state.messages.append(
-        {"role": "assistant", "content": answer}
+    {"role": "assistant", "content": answer}
 )
 
-    with st.chat_message("assistant"):
-        st.markdown(answer)
-
+with st.chat_message("assistant"):
+    st.markdown(answer)
  
 
