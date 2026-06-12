@@ -49,28 +49,22 @@ for message in st.session_state.messages:
 
 
 with st.sidebar:
-    st.markdown("### 📎 Upload File")
-
-    uploaded_file = st.file_uploader(
-        "",
-        label_visibility="collapsed"
-    )
 
     if st.button("🗑️ Clear Chat"):
         st.session_state.messages = []
         st.rerun()
-   
-    chat_text = "\n\n".join(
-    [f"{msg['role']}: {msg['content']}"
-     for msg in st.session_state.messages]
-)
 
-st.download_button(
-    "📥 Download Chat",
-    chat_text,
-    file_name="sandhiya_chat.txt",
-    mime="text/plain"
-)
+    chat_text = "\n\n".join(
+        [f"{msg['role']}: {msg['content']}"
+         for msg in st.session_state.messages]
+    )
+
+    st.download_button(
+        "📥 Download Chat",
+        chat_text,
+        file_name="sandhiya_chat.txt",
+        mime="text/plain"
+    )
   
 
 # =========================
