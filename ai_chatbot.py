@@ -101,7 +101,7 @@ User Question:
 
     except Exception:
         answer = """
-⚠️ Gemini API limit reached.
+⚠️ Sandhiya API limit reached.
 
 Please wait for a minute and try again.
 
