@@ -1,6 +1,7 @@
 import streamlit as st
 import google.generativeai as genai
 import os
+import pandas as pd
 
 # =========================
 # PAGE SETTINGS
@@ -45,6 +46,33 @@ if "messages" not in st.session_state:
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
+
+uploaded_file = st.file_uploader(
+    "📂 Upload CSV File",
+    type=["csv"]
+)
+
+if uploaded_file:
+
+    df = pd.read_csv(uploaded_file)
+
+    st.subheader("📊 Dataset Preview")
+    st.dataframe(df.head())
+
+    response = model.generate_content(
+        f"""
+        Analyze this dataset.
+
+        Columns:
+        {list(df.columns)}
+
+        Sample Data:
+        {df.head().to_string()}
+        """
+    )
+
+    st.subheader("🤖 AI Analysis")
+    st.write(response.text)
 
 # =========================
 # USER INPUT
