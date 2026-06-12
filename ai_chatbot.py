@@ -59,6 +59,18 @@ with st.sidebar:
     if st.button("🗑️ Clear Chat"):
         st.session_state.messages = []
         st.rerun()
+   
+    chat_text = "\n\n".join(
+    [f"{msg['role']}: {msg['content']}"
+     for msg in st.session_state.messages]
+)
+
+st.download_button(
+    "📥 Download Chat",
+    chat_text,
+    file_name="sandhiya_chat.txt",
+    mime="text/plain"
+)
     
 
 # =========================
