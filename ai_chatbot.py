@@ -47,26 +47,12 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-uploaded_file = st.file_uploader(
-    "",
-    type=[
-        "csv",
-        "xlsx",
-        "pdf",
-        "docx",
-        "txt",
-        "png",
-        "jpg",
-        "jpeg",
-        "gif",
-        "zip"
-    ],
-    label_visibility="collapsed"
-)
 
-if uploaded_file:
-    st.success(f"📎 {uploaded_file.name} uploaded successfully!")
-
+with st.sidebar:
+    uploaded_file = st.file_uploader(
+        "📎 Upload File"
+    )
+    
 
 # =========================
 # USER INPUT
