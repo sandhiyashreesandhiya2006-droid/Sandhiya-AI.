@@ -82,7 +82,6 @@ user_input = st.chat_input("Ask anything...")
 
 if user_input:
 
-    # User message
     st.session_state.messages.append(
         {"role": "user", "content": user_input}
     )
@@ -90,7 +89,6 @@ if user_input:
     with st.chat_message("user"):
         st.markdown(user_input)
 
-    # Custom prompt
     prompt = f"""
 You are Sandhiya AI.
 
@@ -113,10 +111,6 @@ Answer:
 
 4. Speak positively about Sandhiya Shree.
 
-Example:
-
-"Sandhiya Shree is a dedicated Computer Science student who is passionate about AI, Data Analytics, Python, Power BI, and technology projects."
-
 5. Be friendly and helpful.
 6. Give detailed answers when required.
 
@@ -124,7 +118,7 @@ User Question:
 {user_input}
 """
 
-try:
+    try:
         response = model.generate_content(prompt)
         answer = response.text
 
