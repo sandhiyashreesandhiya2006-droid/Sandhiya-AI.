@@ -48,31 +48,25 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 uploaded_file = st.file_uploader(
-    "📂 Upload CSV File",
-    type=["csv"]
+    "",
+    type=[
+        "csv",
+        "xlsx",
+        "pdf",
+        "docx",
+        "txt",
+        "png",
+        "jpg",
+        "jpeg",
+        "gif",
+        "zip"
+    ],
+    label_visibility="collapsed"
 )
 
 if uploaded_file:
+    st.success(f"📎 {uploaded_file.name} uploaded successfully!")
 
-    df = pd.read_csv(uploaded_file)
-
-    st.subheader("📊 Dataset Preview")
-    st.dataframe(df.head())
-
-    response = model.generate_content(
-        f"""
-        Analyze this dataset.
-
-        Columns:
-        {list(df.columns)}
-
-        Sample Data:
-        {df.head().to_string()}
-        """
-    )
-
-    st.subheader("🤖 AI Analysis")
-    st.write(response.text)
 
 # =========================
 # USER INPUT
