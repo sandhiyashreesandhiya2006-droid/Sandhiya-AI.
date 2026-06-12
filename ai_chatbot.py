@@ -124,23 +124,13 @@ User Question:
 {user_input}
 """
 
-if prompt := st.chat_input("Ask anything..."):
 
-    with st.chat_message("user"):
-        st.markdown(prompt)
-
-    try:
+try:
         response = model.generate_content(prompt)
         answer = response.text
 
-    except Exception:
-        answer = """
-⚠️ Sandhiya API limit reached.
-
-Please wait for a minute and try again.
-
-This happens when too many requests are sent in a short time.
-"""
+    except Exception as e:
+        answer = f"Error: {e}"
 
     st.session_state.messages.append(
         {"role": "assistant", "content": answer}
@@ -148,5 +138,8 @@ This happens when too many requests are sent in a short time.
 
     with st.chat_message("assistant"):
         st.markdown(answer)
+
+  
+  
  
 
