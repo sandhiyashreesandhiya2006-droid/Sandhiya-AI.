@@ -49,6 +49,9 @@ for message in st.session_state.messages:
 
 
 with st.sidebar:
+    uploaded_file = st.file_uploader(
+        "📎 Upload File"
+    )
 
     if st.button("🗑️ Clear Chat"):
         st.session_state.messages = []
