@@ -124,6 +124,7 @@ User Question:
 {user_input}
 """
 
+if prompt := st.chat_input("Ask anything..."):
 try:
     response = model.generate_content(prompt)
     answer = response.text
