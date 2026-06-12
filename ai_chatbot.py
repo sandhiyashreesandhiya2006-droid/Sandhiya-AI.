@@ -127,7 +127,7 @@ User Question:
     response = model.generate_content(prompt)
 answer = response.text
    
-    st.session_state.messages.append(
+st.session_state.messages.append(
     {"role": "assistant", "content": answer}
 )
 
