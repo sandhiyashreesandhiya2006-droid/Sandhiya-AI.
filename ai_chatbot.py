@@ -125,6 +125,21 @@ User Question:
 """
 
 
+try:
+        response = model.generate_content(prompt)
+        answer = response.text
+
+    except Exception as e:
+        answer = f"Error: {e}"
+
+    st.session_state.messages.append(
+        {"role": "assistant", "content": answer}
+    )
+
+    with st.chat_message("assistant"):
+        st.markdown(answer)
+
+
 
     
 
