@@ -143,16 +143,7 @@ This happens when too many requests are sent in a short time.
     )
 
 with st.chat_message("assistant"):
-
-    message_placeholder = st.empty()
-    full_response = ""
-
-    for word in answer.split():
-        full_response += word + " "
-        message_placeholder.markdown(full_response + "▌")
-        time.sleep(0.03)
-
-    message_placeholder.markdown(full_response)
+    st.markdown(answer)
 
  
 
