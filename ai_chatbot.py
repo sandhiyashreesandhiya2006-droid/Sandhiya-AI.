@@ -125,14 +125,14 @@ User Question:
 """
 
     try:
-        response=model.generate_content(prompt)
+        response = model.generate_content(prompt)
     answer = response.text
 
     except Exception:
-    answer = "⚠️ Sandhiya API limit reached."
+        answer = "⚠️ Sandhiya API limit reached."
 
     st.session_state.messages.append(
-    {"role": "assistant", "content": answer}
+        {"role": "assistant", "content": answer}
 )
 
     with st.chat_message("assistant"):
