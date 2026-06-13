@@ -204,13 +204,14 @@ User Question:
 {user_input}
 """
 
-    try:
-        with st.spinner("🤖 Sandhiya AI is thinking..."):
-            response = model.generate_content(prompt)
+
+try:
+    with st.spinner("🤖 Sandhiya AI is thinking..."):
+        response = model.generate_content(prompt)
         answer = response.text
 
-    except:
-        answer = """
+except Exception:
+    answer = """
 ⚠️ Sandhiya API limit reached.
 
 Please wait for a minute and try again.
