@@ -118,6 +118,17 @@ Sample Data:
 
         st.markdown("### 🤖 AI Summary")
         st.write(summary_response.text)
+      
+        chart_type = st.selectbox(
+    "Chart Type",
+    ["Bar", "Line"]
+)
+
+if chart_type == "Bar":
+    st.bar_chart(df[selected_col])
+
+elif chart_type == "Line":
+    st.line_chart(df[selected_col])
 
     except Exception as e:
         st.error(f"Error reading file: {e}")
