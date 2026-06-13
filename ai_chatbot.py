@@ -205,12 +205,12 @@ User Question:
 """
 
     try:
-        with st.spinner("🤖 Sandhiya AI is thinking..."):
+    with st.spinner("🤖 Sandhiya AI is thinking..."):
         response = model.generate_content(prompt)
         answer = response.text
 
-    except:
-        answer = """
+except:
+    answer = """
 ⚠️ Sandhiya API limit reached.
 
 Please wait for a minute and try again.
@@ -218,12 +218,13 @@ Please wait for a minute and try again.
 This happens when too many requests are sent in a short time.
 """
 
-    st.session_state.messages.append(
-        {"role": "assistant", "content": answer}
-    )
+st.session_state.messages.append(
+    {"role": "assistant", "content": answer}
+)
 
-    with st.chat_message("assistant"):
-        st.markdown(answer)
+with st.chat_message("assistant"):
+    st.markdown(answer)
+
 
 
 
