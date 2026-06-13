@@ -30,6 +30,8 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # TITLE
 # =========================
 
+st.write("TEST 123")
+
 st.write("Before Logo")
 
 st.image("logo.png")
