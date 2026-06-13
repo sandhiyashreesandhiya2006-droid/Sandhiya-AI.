@@ -100,7 +100,7 @@ if uploaded_file is not None:
 
         st.dataframe(df.head())
 
-summary_prompt = f"""
+        summary_prompt = f"""
 Analyze this dataset and provide:
 
 1. Short Summary
