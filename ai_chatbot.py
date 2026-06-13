@@ -30,10 +30,6 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # TITLE
 # =========================
 
-col1, col2, col3 = st.columns([2,1,2])
-
-with col2:
-    st.image("logo.png", width=100)
 
 st.markdown(
     """
@@ -62,6 +58,10 @@ for message in st.session_state.messages:
 
 
 with st.sidebar:
+    st.image("logo.png", width=180)
+
+    st.markdown("### 🤖 Sandhiya AI")
+   
     uploaded_file = st.file_uploader(
     "📎 Upload File",
     type=["csv", "xlsx", "pdf", "docx", "txt"]
