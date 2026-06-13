@@ -3,6 +3,8 @@ import google.generativeai as genai
 import os
 import pandas as pd
 import time
+from PyPDF2 import PdfReader
+from docx import Document
 
 # =========================
 # PAGE SETTINGS
@@ -53,7 +55,7 @@ for message in st.session_state.messages:
 with st.sidebar:
     uploaded_file = st.file_uploader(
     "📎 Upload File",
-    type=["csv", "xlsx"]
+    type=["csv", "xlsx", "pdf", "docx", "txt"]
 )
     
     if st.button("➕ New Chat"):
@@ -80,11 +82,13 @@ if uploaded_file is not None:
 
     try:
 
+        # 👇 Indha edathula
         if uploaded_file.name.endswith(".csv"):
-            df = pd.read_csv(uploaded_file)
-
+            ...
         elif uploaded_file.name.endswith(".xlsx"):
-            df = pd.read_excel(uploaded_file)
+            ...
+        elif uploaded_file.name.endswith(".pdf"):
+            ...
 
         st.success("✅ File uploaded successfully")
 
