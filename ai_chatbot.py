@@ -154,8 +154,10 @@ Content:
         st.markdown("### 🤖 AI Summary")
         st.write(summary_response.text)
 
-    except Exception as e:
-        st.error(f"Error reading file: {e}")
+    except Exception:
+    st.warning(
+        "⚠️ AI Summary temporarily unavailable. Please try again later."
+    )
 
   
 
