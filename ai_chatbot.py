@@ -52,8 +52,9 @@ for message in st.session_state.messages:
 
 with st.sidebar:
     uploaded_file = st.file_uploader(
-        "📎 Upload File"
-    )
+    "📎 Upload File",
+    type=["csv", "xlsx"]
+)
     
     if st.button("➕ New Chat"):
         st.session_state.messages = []
