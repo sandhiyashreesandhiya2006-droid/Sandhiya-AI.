@@ -55,6 +55,33 @@ with st.sidebar:
     "📎 Upload File",
     type=["csv", "xlsx"]
 )
+
+if uploaded_file is not None:
+
+    try:
+
+        if uploaded_file.name.endswith(".csv"):
+            df = pd.read_csv(uploaded_file)
+
+        elif uploaded_file.name.endswith(".xlsx"):
+            df = pd.read_excel(uploaded_file)
+
+        st.success("✅ File uploaded successfully")
+
+        rows = df.shape[0]
+        cols = df.shape[1]
+        missing = df.isnull().sum().sum()
+
+        st.markdown("### 📄 Dataset Summary")
+
+        st.write(f"📊 Rows: {rows}")
+        st.write(f"📊 Columns: {cols}")
+        st.write(f"⚠️ Missing Values: {missing}")
+
+        st.dataframe(df.head())
+
+    except Exception as e:
+        st.error(f"Error reading file: {e}")
     
     if st.button("➕ New Chat"):
         st.session_state.messages = []
