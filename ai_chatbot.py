@@ -209,8 +209,8 @@ User Question:
             response = model.generate_content(prompt)
         answer = response.text
 
-except:
-    answer = """
+    except:
+        answer = """
 ⚠️ Sandhiya API limit reached.
 
 Please wait for a minute and try again.
