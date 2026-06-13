@@ -29,6 +29,23 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # =========================
 # TITLE
 # =========================
+
+col1, col2, col3 = st.columns([1,2,1])
+
+with col2:
+    st.image("logo.png", width=180)
+
+st.markdown(
+    """
+    <div style='text-align:center;'>
+        <h1 style='color:#4F46E5;'>🤖 Sandhiya AI</h1>
+        ...
+
+
+
+
+
+
 st.markdown(
     """
     <div style='text-align:center;'>
