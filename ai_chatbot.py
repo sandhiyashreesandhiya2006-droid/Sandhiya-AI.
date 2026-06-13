@@ -206,7 +206,7 @@ User Question:
 
     try:
         with st.spinner("🤖 Sandhiya AI is thinking..."):
-        response = model.generate_content(prompt)
+            response = model.generate_content(prompt)
         answer = response.text
 
 except:
