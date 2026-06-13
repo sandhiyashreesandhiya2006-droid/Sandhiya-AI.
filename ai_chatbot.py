@@ -100,6 +100,25 @@ if uploaded_file is not None:
 
         st.dataframe(df.head())
 
+summary_prompt = f"""
+Analyze this dataset and provide:
+
+1. Short Summary
+2. Key Insights
+3. Important Columns
+
+Columns:
+{list(df.columns)}
+
+Sample Data:
+{df.head(10).to_string()}
+"""
+
+        summary_response = model.generate_content(summary_prompt)
+
+        st.markdown("### 🤖 AI Summary")
+        st.write(summary_response.text)
+
     except Exception as e:
         st.error(f"Error reading file: {e}")
   
