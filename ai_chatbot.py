@@ -82,32 +82,81 @@ if uploaded_file is not None:
 
     try:
 
-        # 👇 Indha edathula
         if uploaded_file.name.endswith(".csv"):
-            ...
+
+            df = pd.read_csv(uploaded_file)
+
+            text_content = df.head(20).to_string()
+
+            rows = df.shape[0]
+            cols = df.shape[1]
+            missing = df.isnull().sum().sum()
+
+            st.markdown("### 📄 Dataset Summary")
+            st.write(f"📊 Rows: {rows}")
+            st.write(f"📊 Columns: {cols}")
+            st.write(f"⚠️ Missing Values: {missing}")
+
+            st.dataframe(df.head())
+
         elif uploaded_file.name.endswith(".xlsx"):
-            ...
+
+            df = pd.read_excel(uploaded_file)
+
+            text_content = df.head(20).to_string()
+
+            rows = df.shape[0]
+            cols = df.shape[1]
+            missing = df.isnull().sum().sum()
+
+            st.markdown("### 📄 Dataset Summary")
+            st.write(f"📊 Rows: {rows}")
+            st.write(f"📊 Columns: {cols}")
+            st.write(f"⚠️ Missing Values: {missing}")
+
+            st.dataframe(df.head())
+
+        elif uploaded_file.name.endswith(".txt"):
+
+            text_content = uploaded_file.read().decode("utf-8")
+
         elif uploaded_file.name.endswith(".pdf"):
-            ...
 
-        st.success("✅ File uploaded successfully")
+            pdf = PdfReader(uploaded_file)
 
-        rows = df.shape[0]
-        cols = df.shape[1]
-        missing = df.isnull().sum().sum()
+            text_content = ""
 
-        st.markdown("### 📄 Dataset Summary")
+            for page in pdf.pages:
+                text_content += page.extract_text() or ""
 
-        st.write(f"📊 Rows: {rows}")
-        st.write(f"📊 Columns: {cols}")
-        st.write(f"⚠️ Missing Values: {missing}")
+        elif uploaded_file.name.endswith(".docx"):
 
-        st.dataframe(df.head())
+            doc = Document(uploaded_file)
 
-            
+            text_content = "\n".join(
+                [p.text for p in doc.paragraphs]
+            )
+
+        summary_prompt = f"""
+Give:
+
+1. Short Summary
+2. Important Points
+3. Key Information
+
+Content:
+
+{text_content[:5000]}
+"""
+
+        summary_response = model.generate_content(summary_prompt)
+
+        st.markdown("### 🤖 AI Summary")
+        st.write(summary_response.text)
 
     except Exception as e:
         st.error(f"Error reading file: {e}")
+
   
 
 # =========================
