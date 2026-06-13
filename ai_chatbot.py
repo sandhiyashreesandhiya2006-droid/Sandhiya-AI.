@@ -207,7 +207,7 @@ User Question:
 
     try:
         with st.spinner("🤖 Sandhiya AI is thinking..."):
-        response = model.generate_content(prompt)
+            response = model.generate_content(prompt)
         answer = response.text
 
     except Exception:
@@ -224,7 +224,7 @@ This happens when too many requests are sent in a short time.
 )
 
     with st.chat_message("assistant"):
-    st.markdown(answer)
+        st.markdown(answer)
 
 
 
