@@ -30,23 +30,7 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # TITLE
 # =========================
 
-st.write("TEST 123")
-
-st.write("Before Logo")
-
-st.image("logo.png")
-
-st.write("After Logo")
-
-st.markdown(
-    """
-    <div style='text-align:center;'>
-        <h1 style='color:#4F46E5;'>🤖 Sandhiya AI</h1>
-        ...
-
-
-
-
+st.image("logo.png", width=180)
 
 st.markdown(
     """
@@ -60,6 +44,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 # =========================
 # CHAT HISTORY
