@@ -30,12 +30,6 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # TITLE
 # =========================
 
-col1, col2, col3 = st.columns([1,1,1])
-
-with col2:
-    st.image("logo.png", width=100)
-
-
 st.markdown(
     """
     <div style='text-align:center;'>
