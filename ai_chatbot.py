@@ -155,7 +155,7 @@ Content:
         st.write(summary_response.text)
 
     except Exception:
-    st.warning(
+        st.warning(
         "⚠️ AI Summary temporarily unavailable. Please try again later."
     )
 
