@@ -5,6 +5,8 @@ import pandas as pd
 import time
 from PyPDF2 import PdfReader
 from docx import Document
+from PIL import Image
+
 
 # =========================
 # PAGE SETTINGS
