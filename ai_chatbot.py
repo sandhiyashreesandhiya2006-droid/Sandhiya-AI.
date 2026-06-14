@@ -29,6 +29,27 @@ SERPER_API_KEY = st.secrets["SERPER_API_KEY"]
 
 model = genai.GenerativeModel("gemini-2.5-flash")
 
+def search_google(query):
+
+    url = "https://google.serper.dev/search"
+
+    payload = {
+        "q": query
+    }
+
+    headers = {
+        "X-API-KEY": SERPER_API_KEY,
+        "Content-Type": "application/json"
+    }
+
+    response = requests.post(
+        url,
+        json=payload,
+        headers=headers
+    )
+
+    return response.json()
+
 # =========================
 # TITLE
 # =========================
@@ -225,10 +246,43 @@ User Question:
 {user_input}
 """
 
+current_keywords = [
+    "cm",
+    "chief minister",
+    "pm",
+    "prime minister",
+    "president",
+    "minister",
+    "latest news",
+    "today news",
+    "current affairs",
+    "election"
+]
 
-    try:
-        with st.spinner("🤖 Sandhiya AI is thinking..."):
+try:
+
+    with st.spinner("🤖 Sandhiya AI is thinking..."):
+
+        if any(word in user_input.lower() for word in current_keywords):
+
+            search_result = search_google(user_input)
+
+            response = model.generate_content(
+                f"""
+Question:
+{user_input}
+
+Search Results:
+{search_result}
+
+Give the latest and accurate answer.
+"""
+            )
+
+        else:
+
             response = model.generate_content(prompt)
+
         answer = response.text
 
     except Exception:
