@@ -250,6 +250,7 @@ User Question:
     "current affairs",
     "election"
 ]
+answer = ""
 
     try:
 
