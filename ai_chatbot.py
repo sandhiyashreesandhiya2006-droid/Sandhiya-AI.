@@ -258,11 +258,10 @@ User Question:
 
             if any(word in user_input.lower() for word in current_keywords):
 
-                search_result = search_google(user_input)
+                search_result = str(search_google(user_input))
 
                 response = model.generate_content(
-            f"""
-
+                f"""
 Question:
 {user_input}
 
@@ -271,8 +270,9 @@ Search Results:
 
 Give the latest and accurate answer.
 """
-)
+    )
 
+                answer = response.text
             else:
 
                 response = model.generate_content(prompt)
