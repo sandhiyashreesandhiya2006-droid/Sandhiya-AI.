@@ -207,6 +207,16 @@ Answer:
 
 5. Be friendly and helpful.
 6. Give detailed answers when required.
+7. If the question is about:
+   - Chief Minister
+   - Prime Minister
+   - President
+   - Elections
+   - Current Affairs
+   - Latest News
+
+   Reply:
+   "Current information may change. Please verify with official sources."
 
 User Question:
 {user_input}
