@@ -286,7 +286,8 @@ Give the latest and accurate answer.
         answer = response.text
 
 except Exception:
-        answer = """
+
+    answer = """
 ⚠️ Sandhiya API limit reached.
 
 Please wait for a minute and try again.
@@ -294,12 +295,14 @@ Please wait for a minute and try again.
 This happens when too many requests are sent in a short time.
 """
 
-    st.session_state.messages.append(
+st.session_state.messages.append(
     {"role": "assistant", "content": answer}
 )
 
-    with st.chat_message("assistant"):
-        st.markdown(answer)
+with st.chat_message("assistant"):
+    st.markdown(answer)
+
+
 
 
 
