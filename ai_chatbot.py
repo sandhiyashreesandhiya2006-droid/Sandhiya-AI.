@@ -257,9 +257,9 @@ User Question:
 
             if any(word in user_input.lower() for word in current_keywords):
 
-            search_result = search_google(user_input)
+                search_result = search_google(user_input)
 
-            response = model.generate_content(
+                response = model.generate_content(
                 f"""
 
 Question:
@@ -274,9 +274,9 @@ Give the latest and accurate answer.
 
             else:
 
-            response = model.generate_content(prompt)
+                response = model.generate_content(prompt)
 
-        answer = response.text
+                answer = response.text
 
     except Exception:
 
