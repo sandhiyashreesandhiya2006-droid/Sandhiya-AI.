@@ -202,12 +202,12 @@ user_input = st.chat_input("Ask anything...")
 
 if user_input:
 
-st.session_state.messages.append(
+    st.session_state.messages.append(
     {"role": "user", "content": user_input}
 )
 
-with st.chat_message("user"):
-    st.markdown(user_input)
+    with st.chat_message("user"):
+        st.markdown(user_input)
 
 prompt = f"""
 
