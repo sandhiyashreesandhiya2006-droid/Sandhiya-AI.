@@ -252,16 +252,16 @@ User Question:
 ]
 answer = ""
 
-    try:
+try:
 
-        with st.spinner("🤖 Sandhiya AI is thinking..."):
+    with st.spinner("🤖 Sandhiya AI is thinking..."):
 
-            if any(word in user_input.lower() for word in current_keywords):
+        if any(word in user_input.lower() for word in current_keywords):
 
-                search_result = search_google(user_input)
+            search_result = search_google(user_input)
 
-                response = model.generate_content(
-                f"""
+            response = model.generate_content(
+            f"""
 
 Question:
 {user_input}
@@ -273,13 +273,14 @@ Give the latest and accurate answer.
 """
 )
 
-            else:
+        else:
 
-                response = model.generate_content(prompt)
+            response = model.generate_content(prompt)
 
-                answer = response.text
+             
+            answer = response.text
 
-    except Exception:
+except Exception:
 
         answer = """
 
