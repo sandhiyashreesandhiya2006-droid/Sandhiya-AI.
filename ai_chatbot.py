@@ -238,7 +238,7 @@ User Question:
 {user_input}
 """
 
-current_keywords = [
+    current_keywords = [
     "cm",
     "chief minister",
     "pm",
