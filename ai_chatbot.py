@@ -209,7 +209,7 @@ if user_input:
     with st.chat_message("user"):
         st.markdown(user_input)
 
-prompt = f"""
+    prompt = f"""
 
 You are Sandhiya AI.
 
