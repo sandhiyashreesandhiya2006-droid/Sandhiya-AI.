@@ -285,7 +285,7 @@ Give the latest and accurate answer.
 
         answer = response.text
 
-    except Exception:
+except Exception:
         answer = """
 ⚠️ Sandhiya API limit reached.
 
