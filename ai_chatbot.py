@@ -251,9 +251,9 @@ User Question:
     "election"
 ]
 
-try:
+    try:
 
-    with st.spinner("🤖 Sandhiya AI is thinking..."):
+        with st.spinner("🤖 Sandhiya AI is thinking..."):
 
         if any(word in user_input.lower() for word in current_keywords):
 
@@ -278,9 +278,9 @@ Give the latest and accurate answer.
 
         answer = response.text
 
-except Exception:
+    except Exception:
 
-    answer = """
+        answer = """
 
 ⚠️ Sandhiya API limit reached.
 
