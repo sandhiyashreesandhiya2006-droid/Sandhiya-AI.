@@ -6,6 +6,7 @@ import time
 from PyPDF2 import PdfReader
 from docx import Document
 from PIL import Image
+import requests
 
 
 # =========================
@@ -23,6 +24,8 @@ st.set_page_config(
 API_KEY = os.getenv("GEMINI_API_KEY")
 
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+
+SERPER_API_KEY = st.secrets["SERPER_API_KEY"]
 
 model = genai.GenerativeModel("gemini-2.5-flash")
 
