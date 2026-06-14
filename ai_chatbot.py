@@ -255,7 +255,7 @@ User Question:
 
         with st.spinner("🤖 Sandhiya AI is thinking..."):
 
-        if any(word in user_input.lower() for word in current_keywords):
+            if any(word in user_input.lower() for word in current_keywords):
 
             search_result = search_google(user_input)
 
@@ -272,7 +272,7 @@ Give the latest and accurate answer.
 """
 )
 
-        else:
+            else:
 
             response = model.generate_content(prompt)
 
