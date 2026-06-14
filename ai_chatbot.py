@@ -192,22 +192,25 @@ Content:
     )
 
   
+=========================
 
-# =========================
-# USER INPUT
-# =========================
+USER INPUT
+
+=========================
+
 user_input = st.chat_input("Ask anything...")
 
 if user_input:
 
-    st.session_state.messages.append(
-        {"role": "user", "content": user_input}
-    )
+st.session_state.messages.append(
+    {"role": "user", "content": user_input}
+)
 
-    with st.chat_message("user"):
-        st.markdown(user_input)
+with st.chat_message("user"):
+    st.markdown(user_input)
 
-    prompt = f"""
+prompt = f"""
+
 You are Sandhiya AI.
 
 Creator: Sandhiya Shree.
@@ -228,19 +231,8 @@ Answer:
 "I was created by Sandhiya Shree, a passionate Computer Science student, aspiring Data Analyst, and AI enthusiast."
 
 4. Speak positively about Sandhiya Shree.
-
 5. Be friendly and helpful.
 6. Give detailed answers when required.
-7. If the question is about:
-   - Chief Minister
-   - Prime Minister
-   - President
-   - Elections
-   - Current Affairs
-   - Latest News
-
-   Reply:
-   "Current information may change. Please verify with official sources."
 
 User Question:
 {user_input}
@@ -259,9 +251,9 @@ current_keywords = [
     "election"
 ]
 
-    try:
+try:
 
-        with st.spinner("🤖 Sandhiya AI is thinking..."):
+    with st.spinner("🤖 Sandhiya AI is thinking..."):
 
         if any(word in user_input.lower() for word in current_keywords):
 
@@ -269,6 +261,7 @@ current_keywords = [
 
             response = model.generate_content(
                 f"""
+
 Question:
 {user_input}
 
@@ -277,7 +270,7 @@ Search Results:
 
 Give the latest and accurate answer.
 """
-            )
+)
 
         else:
 
@@ -285,9 +278,10 @@ Give the latest and accurate answer.
 
         answer = response.text
 
-    except Exception:
+except Exception:
 
     answer = """
+
 ⚠️ Sandhiya API limit reached.
 
 Please wait for a minute and try again.
@@ -295,12 +289,12 @@ Please wait for a minute and try again.
 This happens when too many requests are sent in a short time.
 """
 
-    st.session_state.messages.append(
+st.session_state.messages.append(
     {"role": "assistant", "content": answer}
 )
 
-    with st.chat_message("assistant"):
-        st.markdown(answer)
+with st.chat_message("assistant"):
+    st.markdown(answer)
 
 
 
