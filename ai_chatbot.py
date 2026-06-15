@@ -272,6 +272,7 @@ User Question:
             if any(word in user_input.lower() for word in current_keywords):
 
                 search_result = str(search_google(user_input))
+                st.write(search_result)
 
                 response = model.generate_content(
                 f"""
