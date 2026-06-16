@@ -118,9 +118,9 @@ with st.sidebar:
     placeholder="Data Analyst"
     )
   
-        if st.button("Generate Interview Questions"):
+    if st.button("Generate Interview Questions"):
 
-        prompt = f"""
+    prompt = f"""
 Generate 15 interview questions for {job_role}.
 
 Include:
