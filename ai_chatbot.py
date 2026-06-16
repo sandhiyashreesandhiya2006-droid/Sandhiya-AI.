@@ -111,16 +111,16 @@ with st.sidebar:
     )
 
 
-st.markdown("### 🎯 Career Tools")
+    st.markdown("### 🎯 Career Tools")
 
-job_role = st.text_input(
-    "Enter Job Role",
-    placeholder="Data Analyst"
-)
+        job_role = st.text_input(
+        "Enter Job Role",
+        placeholder="Data Analyst"
+    )
+  
+        if st.button("Generate Interview Questions"):
 
-if st.button("Generate Interview Questions"):
-
-    prompt = f"""
+        prompt = f"""
 Generate 15 interview questions for {job_role}.
 
 Include:
