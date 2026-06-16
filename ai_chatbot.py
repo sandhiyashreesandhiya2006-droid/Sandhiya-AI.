@@ -110,6 +110,30 @@ with st.sidebar:
         mime="text/plain"
     )
 
+
+st.markdown("### 🎯 Career Tools")
+
+job_role = st.text_input(
+    "Enter Job Role",
+    placeholder="Data Analyst"
+)
+
+if st.button("Generate Interview Questions"):
+
+    prompt = f"""
+Generate 15 interview questions for {job_role}.
+
+Include:
+1. Basic Questions
+2. Technical Questions
+3. HR Questions
+"""
+
+    response = model.generate_content(prompt)
+
+    st.markdown("### 🎯 Interview Questions")
+    st.write(response.text)
+
 if uploaded_file is not None:
 
     try:
