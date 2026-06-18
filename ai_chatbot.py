@@ -119,15 +119,14 @@ with st.sidebar:
     )
   
     if st.button("Generate Interview Questions"):
-
-        prompt = f"""
-Generate 15 interview questions for {job_role}.
-
-Include:
-1. Basic Questions
-2. Technical Questions
-3. HR Questions
-"""
+    
+    prompt = f"""
+    Generate 10 interview questions for {job_role}.
+    Include:
+    1. Technical Questions
+    2. Scenario Based Questions
+    3. HR Questions
+    """
 
     response = model.generate_content(prompt)
 
