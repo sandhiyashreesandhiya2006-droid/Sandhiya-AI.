@@ -122,16 +122,16 @@ with st.sidebar:
     
         prompt = f"""
         Generate 10 interview questions for {job_role}.
-    Include:
-    1. Technical Questions
-    2. Scenario Based Questions
-    3. HR Questions
+        Include:
+        1. Technical Questions
+        2. Scenario Based Questions
+        3. HR Questions
     """
 
-    response = model.generate_content(prompt)
+        response = model.generate_content(prompt)
 
-    st.markdown("### 🎯 Interview Questions")
-    st.write(response.text)
+        st.markdown("### 🎯 Interview Questions")
+        st.write(response.text)
 
 if uploaded_file is not None:
 
