@@ -10,7 +10,7 @@ import requests
 import streamlit as st
 
 USER_CREDENTIALS = {
-    "sandhiya": "12345"
+    "spark": "yaazh"
 }
 
 
