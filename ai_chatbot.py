@@ -334,6 +334,14 @@ if user_input:
     st.session_state.messages.append(
     {"role": "user", "content": user_input}
 )
+if "chat_title" not in st.session_state:
+
+    title = user_input[:30]
+
+    if len(user_input) > 30:
+        title += "..."
+
+    st.session_state.chat_title = title
 
     with st.chat_message("user"):
         st.markdown(user_input)
