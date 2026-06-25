@@ -207,6 +207,9 @@ with st.sidebar:
     if st.button("➕ New Chat"):
         st.session_state.messages = []
         st.session_state.chat_id = "chat_" + str(uuid.uuid4())
+
+        st.session_state.pop("chat_title", None)
+
         st.rerun()
     
 
