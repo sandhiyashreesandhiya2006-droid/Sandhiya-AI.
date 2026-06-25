@@ -449,11 +449,16 @@ This happens when too many requests are sent in a short time.
     {"role": "assistant", "content": answer}
 )
 
+    chat_data = {
+        "title": st.session_state.get("chat_title", "New Chat"),
+        "messages": st.session_state.messages
+    }
+
     with open(
         f"chat_history/{st.session_state.chat_id}.json",
         "w"
     ) as f:
-        json.dump(st.session_state.messages, f)
+        json.dump(chat_data, f)
     
 
     with st.chat_message("assistant"):
