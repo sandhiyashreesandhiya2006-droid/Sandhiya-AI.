@@ -154,8 +154,9 @@ with st.sidebar:
 
     history_files = os.listdir("chat_history")
 
-    for file in history_files:
-        if st.button(file.replace(".json", "")):
+    for i, file in enumerate(history_files, start=1):
+        if st.button(f"Chat {i}"):
+
             with open(f"chat_history/{file}", "r") as f:
                 st.session_state.messages = json.load(f)
 
