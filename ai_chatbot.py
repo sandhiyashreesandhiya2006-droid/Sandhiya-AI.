@@ -129,8 +129,7 @@ if "messages" not in st.session_state:
         with open("chat_history.json", "r") as f:
             st.session_state.messages = json.load(f)
     except:
-        pass
-    st.session_state.messages = []
+        st.session_state.messages = []
 
 # Display old messages
 for message in st.session_state.messages:
