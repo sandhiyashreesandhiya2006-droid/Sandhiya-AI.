@@ -9,10 +9,6 @@ from PIL import Image
 import requests
 import streamlit as st
 
-USER_CREDENTIALS = {
-    "spark": "yaazh"
-}
-
 
 def login():
     st.title("🔐 Login")
@@ -21,12 +17,20 @@ def login():
     password = st.text_input("Password", type="password")
 
     if st.button("Login"):
-        if username in USER_CREDENTIALS and USER_CREDENTIALS[username] == password:
+        if (
+            username == st.secrets["USERNAME"]
+            and password == st.secrets["PASSWORD"]
+        ):
             st.session_state.logged_in = True
-            st.success("Login Successful")
             st.rerun()
         else:
             st.error("Invalid Username or Password")
+
+
+with st.sidebar:
+    if st.button("Logout"):
+        st.session_state.logged_in = False
+        st.rerun()
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -34,11 +38,6 @@ if "logged_in" not in st.session_state:
 if not st.session_state.logged_in:
     login()
     st.stop()
-
-with st.sidebar:
-    if st.button("Logout"):
-        st.session_state.logged_in = False
-        st.rerun()
 
 # =========================
 # PAGE SETTINGS
