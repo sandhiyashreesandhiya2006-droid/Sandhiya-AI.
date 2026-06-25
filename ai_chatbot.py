@@ -22,15 +22,18 @@ def login():
             and password == st.secrets["PASSWORD"]
         ):
             st.session_state.logged_in = True
+            st.session_state.username = username
             st.rerun()
         else:
             st.error("Invalid Username or Password")
 
-
 with st.sidebar:
+    st.write(f"👋 Welcome, {st.session_state.username}")
+
     if st.button("Logout"):
         st.session_state.logged_in = False
         st.rerun()
+
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
