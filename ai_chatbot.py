@@ -159,12 +159,23 @@ with st.sidebar:
     )
 
     for i, file in enumerate(history_files, start=1):
-        if st.button(f"Chat {i}"):
 
-            with open(f"chat_history/{file}", "r") as f:
-                st.session_state.messages = json.load(f)
+        col1, col2 = st.columns([4,1])
 
-            st.rerun()
+        with col1:
+            if st.button(f"Chat {i}", key=f"chat_{i}"):
+
+                with open(f"chat_history/{file}", "r") as f:
+                    st.session_state.messages = json.load(f)
+
+                st.rerun()
+
+        with col2:
+            if st.button("🗑️", key=f"delete_{i}"):
+
+                os.remove(f"chat_history/{file}")
+
+                st.rerun()
    
     uploaded_file = st.file_uploader(
     "📎 Upload File",
