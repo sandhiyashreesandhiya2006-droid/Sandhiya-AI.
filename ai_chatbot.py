@@ -407,7 +407,10 @@ This happens when too many requests are sent in a short time.
     {"role": "assistant", "content": answer}
 )
 
-    with open("chat_history.json", "w") as f:
+    with open(
+        f"chat_history/{st.session_state.chat_id}.json",
+        "w"
+    ) as f:
         json.dump(st.session_state.messages, f)
     
 
