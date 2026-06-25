@@ -28,6 +28,7 @@ def login():
             st.error("Invalid Username or Password")
 
 with st.sidebar:
+    if "username" in st.session_state:
     st.write(f"👋 Welcome, {st.session_state.username}")
 
     if st.button("Logout"):
