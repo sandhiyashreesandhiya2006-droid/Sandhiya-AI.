@@ -150,6 +150,16 @@ with st.sidebar:
     st.image("logo.png", width=180)
 
     st.markdown("### 🤖 Sandhiya AI")
+    st.markdown("### 📜 History")
+
+    history_files = os.listdir("chat_history")
+
+    for file in history_files:
+        if st.button(file.replace(".json", "")):
+            with open(f"chat_history/{file}", "r") as f:
+                st.session_state.messages = json.load(f)
+
+            st.rerun()
    
     uploaded_file = st.file_uploader(
     "📎 Upload File",
