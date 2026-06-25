@@ -133,12 +133,12 @@ if "chat_id" not in st.session_state:
     st.session_state.chat_id = str(uuid.uuid4())
 
 
+if "chat_id" not in st.session_state:
+    st.session_state.chat_id = "chat_" + str(uuid.uuid4())
+
+
 if "messages" not in st.session_state:
-    try:
-        with open("chat_history.json", "r") as f:
-            st.session_state.messages = json.load(f)
-    except:
-        st.session_state.messages = []
+    st.session_state.messages = []
 
 # Display old messages
 for message in st.session_state.messages:
@@ -158,10 +158,7 @@ with st.sidebar:
 
     if st.button("➕ New Chat"):
         st.session_state.messages = []
-
-        with open("chat_history.json", "w") as f:
-            json.dump([], f)
-
+        st.session_state.chat_id = "chat_" + str(uuid.uuid4())
         st.rerun()
     
 
