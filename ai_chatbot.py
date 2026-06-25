@@ -33,6 +33,7 @@ with st.sidebar:
 
     if st.button("Logout"):
         st.session_state.logged_in = False
+        st.session_state.pop("username", None)
         st.rerun()
 
 
