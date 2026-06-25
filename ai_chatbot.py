@@ -9,6 +9,9 @@ from PIL import Image
 import requests
 import streamlit as st
 
+if "attempts" not in st.session_state:
+    st.session_state.attempts = 0
+
 
 def login():
     st.title("🔐 Login")
@@ -17,15 +20,14 @@ def login():
     password = st.text_input("Password", type="password")
 
     if st.button("Login"):
-        if (
-            username == st.secrets["USERNAME"]
-            and password == st.secrets["PASSWORD"]
-        ):
+        if username == st.secrets["USERNAME"] and password == st.secrets["PASSWORD"]:
             st.session_state.logged_in = True
             st.session_state.username = username
+            st.session_state.attempts = 0
             st.rerun()
         else:
-            st.error("Invalid Username or Password")
+            st.session_state.attempts += 1
+            st.error(f"Invalid Username or Password. Attempts: {st.session_state.attempts}/3")
 
 with st.sidebar:
     if "username" in st.session_state:
