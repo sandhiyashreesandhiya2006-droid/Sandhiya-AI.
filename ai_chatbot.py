@@ -28,6 +28,7 @@ def login():
             st.session_state.logged_in = True
             st.session_state.username = username
             st.session_state.attempts = 0
+            st.session_state.last_activity = time.time()
             st.rerun()
         else:
             st.session_state.attempts += 1
@@ -46,9 +47,19 @@ with st.sidebar:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
+
+if "last_activity" in st.session_state:
+    if time.time() - st.session_state.last_activity > 600:  # 10 mins
+        st.session_state.logged_in = False
+        st.session_state.pop("username", None)
+        st.warning("Session expired. Please login again.")
+        st.rerun()
+
+
 if not st.session_state.logged_in:
     login()
     st.stop()
+    st.session_state.last_activity = time.time()
 
 # =========================
 # PAGE SETTINGS
