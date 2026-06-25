@@ -332,16 +332,16 @@ user_input = st.chat_input("Ask anything...")
 if user_input:
 
     st.session_state.messages.append(
-    {"role": "user", "content": user_input}
-)
-if "chat_title" not in st.session_state:
+        {"role": "user", "content": user_input}
+    )
+    if "chat_title" not in st.session_state:
 
-    title = str(user_input)[:30]
+        title = str(user_input)[:30]
 
-    if len(str(user_input)) > 30:
-        title += "..."
+        if len(str(user_input)) > 30:
+            title += "..."
 
-    st.session_state.chat_title = title
+        st.session_state.chat_title = title
 
     with st.chat_message("user"):
         st.markdown(user_input)
