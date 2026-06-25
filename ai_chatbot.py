@@ -9,6 +9,7 @@ from PIL import Image
 import requests
 import streamlit as st
 import json
+import uuid
 
 if "attempts" not in st.session_state:
     st.session_state.attempts = 0
@@ -71,6 +72,9 @@ st.set_page_config(
     layout="wide"
 )
 
+if not os.path.exists("chat_history"):
+    os.makedirs("chat_history")
+
 # =========================
 # API KEY
 # =========================
@@ -124,6 +128,11 @@ st.markdown(
 # =========================
 # CHAT HISTORY
 # =========================
+
+if "chat_id" not in st.session_state:
+    st.session_state.chat_id = str(uuid.uuid4())
+
+
 if "messages" not in st.session_state:
     try:
         with open("chat_history.json", "r") as f:
