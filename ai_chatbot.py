@@ -15,6 +15,10 @@ if "attempts" not in st.session_state:
 
 def login():
     st.title("🔐 Login")
+    
+    if st.session_state.attempts >= 3:
+    st.error("🚫 Too many failed attempts. Refresh the app to try again.")
+    st.stop()
 
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
