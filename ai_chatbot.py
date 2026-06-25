@@ -8,6 +8,7 @@ from docx import Document
 from PIL import Image
 import requests
 import streamlit as st
+import json
 
 if "attempts" not in st.session_state:
     st.session_state.attempts = 0
@@ -124,6 +125,11 @@ st.markdown(
 # CHAT HISTORY
 # =========================
 if "messages" not in st.session_state:
+    try:
+        with open("chat_history.json", "r") as f:
+            st.session_state.messages = json.load(f)
+    except:
+        pass
     st.session_state.messages = []
 
 # Display old messages
@@ -141,13 +147,22 @@ with st.sidebar:
     "📎 Upload File",
     type=["csv", "xlsx", "pdf", "docx", "txt"]
 )
-    
+
     if st.button("➕ New Chat"):
         st.session_state.messages = []
+
+        with open("chat_history.json", "w") as f:
+            json.dump([], f)
+
         st.rerun()
+    
 
     if st.button("🗑️ Clear Chat"):
         st.session_state.messages = []
+
+        with open("chat_history.json", "w") as f:
+            json.dump([], f)
+
         st.rerun()
 
     chat_text = "\n\n".join(
@@ -386,6 +401,10 @@ This happens when too many requests are sent in a short time.
     st.session_state.messages.append(
     {"role": "assistant", "content": answer}
 )
+
+    with open("chat_history.json", "w") as f:
+        json.dump(st.session_state.messages, f)
+    
 
     with st.chat_message("assistant"):
         st.markdown(answer)
