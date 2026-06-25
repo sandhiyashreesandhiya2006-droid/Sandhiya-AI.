@@ -336,9 +336,9 @@ if user_input:
 )
 if "chat_title" not in st.session_state:
 
-    title = user_input[:30]
+    title = str(user_input)[:30]
 
-    if len(user_input) > 30:
+    if len(str(user_input)) > 30:
         title += "..."
 
     st.session_state.chat_title = title
