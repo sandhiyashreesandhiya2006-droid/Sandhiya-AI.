@@ -152,7 +152,11 @@ with st.sidebar:
     st.markdown("### 🤖 Sandhiya AI")
     st.markdown("### 📜 History")
 
-    history_files = os.listdir("chat_history")
+    history_files = sorted(
+        os.listdir("chat_history"),
+        key=lambda x: os.path.getmtime(f"chat_history/{x}"),
+        reverse=True
+    )
 
     for i, file in enumerate(history_files, start=1):
         if st.button(f"Chat {i}"):
