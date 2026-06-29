@@ -160,7 +160,7 @@ user_folder = os.path.join(
 os.makedirs(user_folder, exist_ok=True)
 
 history_files = sorted(
-    os.listdir("chat_history"),
+    [f for f in os.listdir("chat_history") if f.endswith(".json")],
     key=lambda x: os.path.getmtime(f"chat_history/{x}"),
     reverse=True
 )
