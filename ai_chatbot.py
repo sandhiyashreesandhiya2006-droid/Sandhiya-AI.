@@ -211,57 +211,57 @@ uploaded_file = st.file_uploader(
 type=["csv", "xlsx", "pdf", "docx", "txt"]
 )
 
-    if st.button("➕ New Chat"):
-        st.session_state.messages = []
-        st.session_state.chat_id = "chat_" + str(uuid.uuid4())
+if st.button("➕ New Chat"):
+    st.session_state.messages = []
+    st.session_state.chat_id = "chat_" + str(uuid.uuid4())
 
-        st.session_state.pop("chat_title", None)
+    st.session_state.pop("chat_title", None)
 
-        st.rerun()
+    st.rerun()
     
 
-    if st.button("🗑️ Clear Chat"):
-        st.session_state.messages = []
+if st.button("🗑️ Clear Chat"):
+    st.session_state.messages = []
 
-        with open("chat_history.json", "w") as f:
-            json.dump([], f)
+    with open("chat_history.json", "w") as f:
+        json.dump([], f)
 
-        st.rerun()
+    st.rerun()
 
-    chat_text = "\n\n".join(
-        [f"{msg['role']}: {msg['content']}"
-         for msg in st.session_state.messages]
-    )
+chat_text = "\n\n".join(
+    [f"{msg['role']}: {msg['content']}"
+        for msg in st.session_state.messages]
+)
 
-    st.download_button(
-        "📥 Download Chat",
-        chat_text,
-        file_name="sandhiya_chat.txt",
-        mime="text/plain"
-    )
+st.download_button(
+    "📥 Download Chat",
+    chat_text,
+    file_name="sandhiya_chat.txt",
+    mime="text/plain"
+)
 
 
-    st.markdown("### 🎯 Career Tools")
+st.markdown("### 🎯 Career Tools")
 
-    job_role = st.text_input(
-    "Enter Job Role",
-    placeholder="Data Analyst"
-    )
+job_role = st.text_input(
+"Enter Job Role",
+placeholder="Data Analyst"
+)
   
-    if st.button("Generate Interview Questions"):
+if st.button("Generate Interview Questions"):
     
-        prompt = f"""
-        Generate 10 interview questions for {job_role}.
-        Include:
-        1. Technical Questions
-        2. Scenario Based Questions
-        3. HR Questions
-    """
+    prompt = f"""
+    Generate 10 interview questions for {job_role}.
+    Include:
+    1. Technical Questions
+    2. Scenario Based Questions
+    3. HR Questions
+"""
 
-        response = model.generate_content(prompt)
+    response = model.generate_content(prompt)
 
-        st.markdown("### 🎯 Interview Questions")
-        st.write(response.text)
+    st.markdown("### 🎯 Interview Questions")
+    st.write(response.text)
 
 if uploaded_file is not None:
 
