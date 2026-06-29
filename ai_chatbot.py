@@ -462,16 +462,14 @@ Answer:
 
 Important:
 
-For Chief Minister, Prime Minister, President,
-Elections, Current Affairs and Latest News:
+For questions about the Chief Minister, Prime Minister, President, Elections, Current Affairs, or the latest news:
 
-Use only verified search results.
+* Use verified search results whenever available.
+* Answer directly using the verified information.
+* If multiple reliable sources provide conflicting information, clearly mention the conflict instead of guessing.
+* Only say "Current information could not be verified reliably. Please check official sources." when no reliable information is available.
+* Never invent facts.
 
-If information is conflicting or uncertain, reply:
-
-"Current information could not be verified reliably. Please check official government sources."
-
-Do not guess.
 
 User Question:
 {user_input}
