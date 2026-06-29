@@ -152,6 +152,13 @@ with st.sidebar:
     st.markdown("### 🤖 Sandhiya AI")
     st.markdown("### 📜 History")
 
+user_folder = os.path.join(
+    "chat_history",
+    st.session_state.username
+)
+
+os.makedirs(user_folder, exist_ok=True)
+
     history_files = sorted(
         os.listdir("chat_history"),
         key=lambda x: os.path.getmtime(f"chat_history/{x}"),
