@@ -147,22 +147,17 @@ with st.sidebar:
     st.markdown("### 🤖 Sandhiya AI")
     st.markdown("### 📜 History")
 
-    user_folder = os.path.join(
-        "chat_history",
-        st.session_state.username
-    )
-
-    os.makedirs(user_folder, exist_ok=True)
+    
 
     history_files = sorted(
-        [f for f in os.listdir(user_folder) if f.endswith(".json")],
-        key=lambda x: os.path.getmtime(os.path.join(user_folder, x)),
+        [f for f in os.listdir("chat_history") if f.endswith(".json")],
+        key=lambda x: os.path.getmtime(os.path.join("chat_history", x)),
         reverse=True
     )
 
     for i, file in enumerate(history_files, start=1):
 
-        with open(os.path.join(user_folder, file), "r") as f:
+        with open(f"chat_history/{file}", "r") as f:
             data = json.load(f)
 
         if isinstance(data, dict):
@@ -207,7 +202,7 @@ with st.sidebar:
             st.rerun()    
 
         if delete_chat:
-            os.remove(os.path.join(user_folder, file))
+            os.remove(f"chat_history/{file}")
             st.rerun()
 
         if "rename_file" in st.session_state:
@@ -223,7 +218,7 @@ with st.sidebar:
             if st.button("✅ Save Rename"):
 
                 with open(
-                    os.path.join(user_folder, st.session_state.rename_file),
+                    f"chat_history/{st.session_state.rename_file}",
                     "r"
                 ) as f:
                     data = json.load(f)
@@ -232,13 +227,10 @@ with st.sidebar:
                     data["title"] = new_title
 
                     with open(
-                        os.path.join(
-                            user_folder,
-                            f"{st.session_state.chat_id}.json"
-                        ),
+                        f"chat_history/{st.session_state.rename_file}",
                         "w"
                     ) as f:
-                        json.dump(chat_data, f)
+                        json.dump(data, f)
 
                 del st.session_state.rename_file
                 del st.session_state.rename_title
