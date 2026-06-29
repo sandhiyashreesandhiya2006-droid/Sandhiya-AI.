@@ -212,11 +212,11 @@ with st.sidebar:
             st.rerun()
  
 
-                with open(
-                    f"chat_history/{st.session_state.rename_file}",
-                    "r"
-                ) as f:
-                    data = json.load(f)
+            with open(
+                f"chat_history/{st.session_state.rename_file}",
+                "r"
+            ) as f:
+                data = json.load(f)
 
                 if isinstance(data, dict):
                     data["title"] = new_title
