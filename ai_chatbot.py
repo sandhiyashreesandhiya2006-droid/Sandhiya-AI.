@@ -264,7 +264,7 @@ if st.button("Generate Interview Questions"):
     st.write(response.text)
 if uploaded_file is not None:
 
-try:
+ try:
 
     if uploaded_file.name.endswith(".csv"):
 
