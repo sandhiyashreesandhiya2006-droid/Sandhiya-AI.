@@ -159,11 +159,11 @@ user_folder = os.path.join(
 
 os.makedirs(user_folder, exist_ok=True)
 
-    history_files = sorted(
-        os.listdir("chat_history"),
-        key=lambda x: os.path.getmtime(f"chat_history/{x}"),
-        reverse=True
-    )
+history_files = sorted(
+    os.listdir("chat_history"),
+    key=lambda x: os.path.getmtime(f"chat_history/{x}"),
+    reverse=True
+)
 
     for i, file in enumerate(history_files, start=1):
 
