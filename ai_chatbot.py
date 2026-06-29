@@ -192,6 +192,12 @@ with st.sidebar:
                 st.session_state.messages = data
 
             st.rerun()
+        if rename_chat:
+
+            st.session_state.rename_file = file
+            st.session_state.rename_title = title
+
+            st.rerun()    
 
         if delete_chat:
             os.remove(f"chat_history/{file}")
