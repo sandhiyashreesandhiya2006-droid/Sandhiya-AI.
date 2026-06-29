@@ -162,7 +162,7 @@ with st.sidebar:
 
     for i, file in enumerate(history_files, start=1):
 
-        with open(f"chat_history/{file}", "r") as f:
+        with open(os.path.join(user_folder, file), "r") as f:
             data = json.load(f)
 
         if isinstance(data, dict):
@@ -207,7 +207,7 @@ with st.sidebar:
             st.rerun()    
 
         if delete_chat:
-            os.remove(f"chat_history/{file}")
+            os.remove(os.path.join(user_folder, file))
             st.rerun()
 
         if "rename_file" in st.session_state:
@@ -223,7 +223,7 @@ with st.sidebar:
             if st.button("✅ Save Rename"):
 
                 with open(
-                    f"chat_history/{st.session_state.rename_file}",
+                    os.path.join(user_folder, st.session_state.rename_file),
                     "r"
                 ) as f:
                     data = json.load(f)
@@ -232,7 +232,7 @@ with st.sidebar:
                     data["title"] = new_title
 
                     with open(
-                        f"chat_history/{st.session_state.rename_file}",
+                        os.path.join(user_folder, st.session_state.rename_file),
                         "w"
                     ) as f:
                         json.dump(data, f)
