@@ -206,9 +206,9 @@ for i, file in enumerate(history_files, start=1):
         os.remove(f"chat_history/{file}")
         st.rerun()
    
-    uploaded_file = st.file_uploader(
-    "📎 Upload File",
-    type=["csv", "xlsx", "pdf", "docx", "txt"]
+uploaded_file = st.file_uploader(
+"📎 Upload File",
+type=["csv", "xlsx", "pdf", "docx", "txt"]
 )
 
     if st.button("➕ New Chat"):
