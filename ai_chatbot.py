@@ -130,12 +130,7 @@ st.markdown(
 # =========================
 
 if "chat_id" not in st.session_state:
-    st.session_state.chat_id = str(uuid.uuid4())
-
-
-if "chat_id" not in st.session_state:
     st.session_state.chat_id = "chat_" + str(uuid.uuid4())
-
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -145,92 +140,75 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-
 with st.sidebar:
+
     st.image("logo.png", width=180)
 
     st.markdown("### 🤖 Sandhiya AI")
     st.markdown("### 📜 History")
 
-user_folder = os.path.join(
-    "chat_history",
-    st.session_state.username
-)
+    history_files = sorted(
+        [f for f in os.listdir("chat_history") if f.endswith(".json")],
+        key=lambda x: os.path.getmtime(f"chat_history/{x}"),
+        reverse=True
+    )
 
-os.makedirs(user_folder, exist_ok=True)
+    for i, file in enumerate(history_files, start=1):
 
-history_files = sorted(
-    [f for f in os.listdir("chat_history") if f.endswith(".json")],
-    key=lambda x: os.path.getmtime(f"chat_history/{x}"),
-    reverse=True
-)
-
-for i, file in enumerate(history_files, start=1):
-
-    with open(f"chat_history/{file}", "r") as f:
-        data = json.load(f)
-
-    if isinstance(data, dict):
-        title = data.get("title", f"Chat {i}")
-    else:
-        title = f"Chat {i}"
-
-    col1, col2 = st.sidebar.columns([5,1])
-
-    with col1:
-        open_chat = st.button(
-            f"💬 {title}",
-            key=f"chat_{i}",
-            use_container_width=True
-        )
-
-    with col2:
-        delete_chat = st.button(
-            "🗑️",
-            key=f"delete_{i}"
-        )
-
-    if open_chat:
         with open(f"chat_history/{file}", "r") as f:
             data = json.load(f)
 
         if isinstance(data, dict):
-            st.session_state.messages = data.get("messages", [])
-            st.session_state.chat_title = data.get("title", "New Chat")
+            title = data.get("title", f"Chat {i}")
         else:
-            st.session_state.messages = data
+            title = f"Chat {i}"
 
-        st.rerun()
+        col1, col2 = st.columns([5,1])
 
-    if delete_chat:
-        os.remove(f"chat_history/{file}")
-        st.rerun()
-   
-uploaded_file = st.file_uploader(
-"📎 Upload File",
-type=["csv", "xlsx", "pdf", "docx", "txt"]
-)
+        with col1:
+            open_chat = st.button(
+                f"💬 {title}",
+                key=f"chat_{i}",
+                use_container_width=True
+            )
+
+        with col2:
+            delete_chat = st.button(
+                "🗑️",
+                key=f"delete_{i}"
+            )
+
+        if open_chat:
+            if isinstance(data, dict):
+                st.session_state.messages = data.get("messages", [])
+                st.session_state.chat_title = data.get("title", "New Chat")
+            else:
+                st.session_state.messages = data
+
+            st.rerun()
+
+        if delete_chat:
+            os.remove(f"chat_history/{file}")
+            st.rerun()
+
+    uploaded_file = st.file_uploader(
+        "📎 Upload File",
+        type=["csv", "xlsx", "pdf", "docx", "txt"]
+    )
 
     if st.button("➕ New Chat"):
         st.session_state.messages = []
         st.session_state.chat_id = "chat_" + str(uuid.uuid4())
-
         st.session_state.pop("chat_title", None)
-
         st.rerun()
-    
 
     if st.button("🗑️ Clear Chat"):
         st.session_state.messages = []
-
-        with open("chat_history.json", "w") as f:
-            json.dump([], f)
-
         st.rerun()
 
     chat_text = "\n\n".join(
         [f"{msg['role']}: {msg['content']}"
-            for msg in st.session_state.messages]
+         for msg in st.session_state.messages]
     )
 
     st.download_button(
@@ -240,23 +218,23 @@ type=["csv", "xlsx", "pdf", "docx", "txt"]
         mime="text/plain"
     )
 
-
     st.markdown("### 🎯 Career Tools")
 
     job_role = st.text_input(
-    "Enter Job Role",
-    placeholder="Data Analyst"
+        "Enter Job Role",
+        placeholder="Data Analyst"
     )
-  
+
     if st.button("Generate Interview Questions"):
-    
+
         prompt = f"""
-        Generate 10 interview questions for {job_role}.
-        Include:
-        1. Technical Questions
-        2. Scenario Based Questions
-        3. HR Questions
-    """
+Generate 10 interview questions for {job_role}.
+
+Include:
+1. Technical Questions
+2. Scenario Based Questions
+3. HR Questions
+"""
 
         response = model.generate_content(prompt)
 
