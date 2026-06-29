@@ -163,7 +163,7 @@ with st.sidebar:
         else:
             title = f"Chat {i}"
 
-        col1, col2 = st.columns([5,1])
+        col1, col2, col3 = st.columns([4,1,1])
 
         with col1:
             open_chat = st.button(
@@ -173,10 +173,16 @@ with st.sidebar:
             )
 
         with col2:
-            delete_chat = st.button(
-                "🗑️",
-                key=f"delete_{i}"
+            rename_chat = st.button(
+                "✏️",
+                key=f"rename_{i}"
             )
+
+       with col3:
+           delete_chat = st.button(
+               "🗑️",
+               key=f"delete_{i}"
+           )
 
         if open_chat:
             if isinstance(data, dict):
