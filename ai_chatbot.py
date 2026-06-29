@@ -155,8 +155,8 @@ with st.sidebar:
     os.makedirs(user_folder, exist_ok=True)
 
     history_files = sorted(
-        [f for f in os.listdir("chat_history") if f.endswith(".json")],
-        key=lambda x: os.path.getmtime(f"chat_history/{x}"),
+        [f for f in os.listdir(user_folder) if f.endswith(".json")],
+        key=lambda x: os.path.getmtime(os.path.join(user_folder, x)),
         reverse=True
     )
 
