@@ -232,10 +232,13 @@ with st.sidebar:
                     data["title"] = new_title
 
                     with open(
-                        os.path.join(user_folder, st.session_state.rename_file),
+                        os.path.join(
+                            user_folder,
+                            f"{st.session_state.chat_id}.json"
+                        ),
                         "w"
                     ) as f:
-                        json.dump(data, f)
+                        json.dump(chat_data, f)
 
                 del st.session_state.rename_file
                 del st.session_state.rename_title
