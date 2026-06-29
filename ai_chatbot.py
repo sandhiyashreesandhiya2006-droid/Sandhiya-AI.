@@ -144,44 +144,7 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-@st.dialog("✏️ Rename Chat")
-def rename_chat_dialog():
 
-    new_title = st.text_input(
-        "New Chat Name",
-        value=st.session_state.rename_title,
-        key="rename_dialog_input"
-    )
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        if st.button("💾 Save", use_container_width=True):
-
-            with open(
-                f"chat_history/{st.session_state.rename_file}",
-                "r"
-            ) as f:
-                data = json.load(f)
-
-            data["title"] = new_title
-
-            with open(
-                f"chat_history/{st.session_state.rename_file}",
-                "w"
-            ) as f:
-                json.dump(data, f)
-
-            del st.session_state.rename_file
-            del st.session_state.rename_title
-
-            st.rerun()
-
-    with col2:
-        if st.button("❌ Cancel", use_container_width=True):
-            del st.session_state.rename_file
-            del st.session_state.rename_title
-            st.rerun()
 
 with st.sidebar:
 
