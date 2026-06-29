@@ -262,67 +262,66 @@ if st.button("Generate Interview Questions"):
 
     st.markdown("### 🎯 Interview Questions")
     st.write(response.text)
-
 if uploaded_file is not None:
 
-    try:
+try:
 
-        if uploaded_file.name.endswith(".csv"):
+    if uploaded_file.name.endswith(".csv"):
 
-            df = pd.read_csv(uploaded_file)
+        df = pd.read_csv(uploaded_file)
 
-            text_content = df.head(20).to_string()
+        text_content = df.head(20).to_string()
 
-            rows = df.shape[0]
-            cols = df.shape[1]
-            missing = df.isnull().sum().sum()
+        rows = df.shape[0]
+        cols = df.shape[1]
+        missing = df.isnull().sum().sum()
 
-            st.markdown("### 📄 Dataset Summary")
-            st.write(f"📊 Rows: {rows}")
-            st.write(f"📊 Columns: {cols}")
-            st.write(f"⚠️ Missing Values: {missing}")
+        st.markdown("### 📄 Dataset Summary")
+        st.write(f"📊 Rows: {rows}")
+        st.write(f"📊 Columns: {cols}")
+        st.write(f"⚠️ Missing Values: {missing}")
 
-            st.dataframe(df.head())
+        st.dataframe(df.head())
 
-        elif uploaded_file.name.endswith(".xlsx"):
+    elif uploaded_file.name.endswith(".xlsx"):
 
-            df = pd.read_excel(uploaded_file)
+        df = pd.read_excel(uploaded_file)
 
-            text_content = df.head(20).to_string()
+        text_content = df.head(20).to_string()
 
-            rows = df.shape[0]
-            cols = df.shape[1]
-            missing = df.isnull().sum().sum()
+        rows = df.shape[0]
+        cols = df.shape[1]
+        missing = df.isnull().sum().sum()
 
-            st.markdown("### 📄 Dataset Summary")
-            st.write(f"📊 Rows: {rows}")
-            st.write(f"📊 Columns: {cols}")
-            st.write(f"⚠️ Missing Values: {missing}")
+        st.markdown("### 📄 Dataset Summary")
+        st.write(f"📊 Rows: {rows}")
+        st.write(f"📊 Columns: {cols}")
+        st.write(f"⚠️ Missing Values: {missing}")
 
-            st.dataframe(df.head())
+        st.dataframe(df.head())
 
-        elif uploaded_file.name.endswith(".txt"):
+    elif uploaded_file.name.endswith(".txt"):
 
-            text_content = uploaded_file.read().decode("utf-8")
+        text_content = uploaded_file.read().decode("utf-8")
 
-        elif uploaded_file.name.endswith(".pdf"):
+    elif uploaded_file.name.endswith(".pdf"):
 
-            pdf = PdfReader(uploaded_file)
+        pdf = PdfReader(uploaded_file)
 
-            text_content = ""
+        text_content = ""
 
-            for page in pdf.pages:
-                text_content += page.extract_text() or ""
+        for page in pdf.pages:
+            text_content += page.extract_text() or ""
 
-        elif uploaded_file.name.endswith(".docx"):
+    elif uploaded_file.name.endswith(".docx"):
 
-            doc = Document(uploaded_file)
+        doc = Document(uploaded_file)
 
-            text_content = "\n".join(
-                [p.text for p in doc.paragraphs]
-            )
+        text_content = "\n".join(
+            [p.text for p in doc.paragraphs]
+        )
 
-        summary_prompt = f"""
+    summary_prompt = f"""
 Give:
 
 1. Short Summary
@@ -334,15 +333,15 @@ Content:
 {text_content[:5000]}
 """
 
-        summary_response = model.generate_content(summary_prompt)
+    summary_response = model.generate_content(summary_prompt)
 
-        st.markdown("### 🤖 AI Summary")
-        st.write(summary_response.text)
+    st.markdown("### 🤖 AI Summary")
+    st.write(summary_response.text)
 
-    except Exception:
-        st.warning(
-        "⚠️ AI Summary temporarily unavailable. Please try again later."
-    )
+except Exception:
+    st.warning(
+    "⚠️ AI Summary temporarily unavailable. Please try again later."
+)
 
   
 # =========================
