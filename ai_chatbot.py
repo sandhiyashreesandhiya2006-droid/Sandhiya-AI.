@@ -10,6 +10,9 @@ import requests
 import streamlit as st
 import json
 import uuid
+import streamlit as st
+
+
 
 if "attempts" not in st.session_state:
     st.session_state.attempts = 0
@@ -37,6 +40,7 @@ def login():
             st.error(f"Invalid Username or Password. Attempts: {st.session_state.attempts}/3")
 
 with st.sidebar:
+    st.sidebar.write(st.__version__)
     if "username" in st.session_state:
         st.write(f"👋 Welcome, {st.session_state.username}")
 
