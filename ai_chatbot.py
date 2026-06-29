@@ -210,27 +210,38 @@ with st.sidebar:
         if delete_chat:
             os.remove(f"chat_history/{file}")
             st.rerun()
- 
 
-            with open(
-                f"chat_history/{st.session_state.rename_file}",
-                "r"
-            ) as f:
-                data = json.load(f)
+        if "rename_file" in st.session_state:
 
-                if isinstance(data, dict):
-                    data["title"] = new_title
+            new_title = st.text_input(
+                "Rename Chat",
+                value=st.session_state.rename_title,
+                key="rename_input"
+            )
 
-                    with open(
-                        f"chat_history/{st.session_state.rename_file}",
-                        "w"
-                    ) as f:
-                        json.dump(data, f)
+            if st.button("💾 Save"):
+
+                with open(
+                    f"chat_history/{st.session_state.rename_file}",
+                    "r"
+                ) as f:
+                    data = json.load(f)
+
+                data["title"] = new_title
+
+                with open(
+                    f"chat_history/{st.session_state.rename_file}",
+                    "w"
+                ) as f:
+                    json.dump(data, f)
 
                 del st.session_state.rename_file
                 del st.session_state.rename_title
 
                 st.rerun()
+ 
+
+           
 
     uploaded_file = st.file_uploader(
         "📎 Upload File",
