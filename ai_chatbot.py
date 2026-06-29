@@ -209,7 +209,8 @@ with st.sidebar:
 
             new_title = st.text_input(
                 "New Chat Name",
-                value=st.session_state.rename_title
+                value=st.session_state.rename_title,
+                key="rename_chat_input"
             )
 
             if st.button("✅ Save Rename"):
