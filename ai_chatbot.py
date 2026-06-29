@@ -165,46 +165,46 @@ history_files = sorted(
     reverse=True
 )
 
-    for i, file in enumerate(history_files, start=1):
+for i, file in enumerate(history_files, start=1):
 
+    with open(f"chat_history/{file}", "r") as f:
+        data = json.load(f)
+
+    if isinstance(data, dict):
+        title = data.get("title", f"Chat {i}")
+    else:
+        title = f"Chat {i}"
+
+    col1, col2 = st.sidebar.columns([5,1])
+
+    with col1:
+        open_chat = st.button(
+            f"💬 {title}",
+            key=f"chat_{i}",
+            use_container_width=True
+        )
+
+    with col2:
+        delete_chat = st.button(
+            "🗑️",
+            key=f"delete_{i}"
+        )
+
+    if open_chat:
         with open(f"chat_history/{file}", "r") as f:
             data = json.load(f)
 
         if isinstance(data, dict):
-            title = data.get("title", f"Chat {i}")
+            st.session_state.messages = data.get("messages", [])
+            st.session_state.chat_title = data.get("title", "New Chat")
         else:
-            title = f"Chat {i}"
+            st.session_state.messages = data
 
-        col1, col2 = st.sidebar.columns([5,1])
+        st.rerun()
 
-        with col1:
-            open_chat = st.button(
-                f"💬 {title}",
-                key=f"chat_{i}",
-                use_container_width=True
-            )
-
-        with col2:
-            delete_chat = st.button(
-                "🗑️",
-                key=f"delete_{i}"
-            )
-
-        if open_chat:
-            with open(f"chat_history/{file}", "r") as f:
-                data = json.load(f)
-
-            if isinstance(data, dict):
-                st.session_state.messages = data.get("messages", [])
-                st.session_state.chat_title = data.get("title", "New Chat")
-            else:
-                st.session_state.messages = data
-
-            st.rerun()
-
-        if delete_chat:
-            os.remove(f"chat_history/{file}")
-            st.rerun()
+    if delete_chat:
+        os.remove(f"chat_history/{file}")
+        st.rerun()
    
     uploaded_file = st.file_uploader(
     "📎 Upload File",
