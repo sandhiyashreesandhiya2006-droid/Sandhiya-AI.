@@ -178,11 +178,11 @@ with st.sidebar:
                 key=f"rename_{i}"
             )
 
-       with col3:
-           delete_chat = st.button(
-               "🗑️",
-               key=f"delete_{i}"
-           )
+        with col3:
+            delete_chat = st.button(
+                "🗑️",
+                key=f"delete_{i}"
+            )
 
         if open_chat:
             if isinstance(data, dict):
