@@ -526,7 +526,7 @@ Answer in a clean format.
     
                 answer = response.text
             else:
-                st.info("🚀 Gemini API called")
+                
                 response = model.generate_content(prompt)
 
              
