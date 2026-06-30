@@ -531,17 +531,16 @@ Answer in a clean format.
 
              
                 answer = response.text
+    except Exception as e:
 
-    except Exception:
+        st.error(f"Real Error: {e}")
 
-            answer = """
+        answer = f"""
+    ❌ Error:
 
-⚠️ Sandhiya API limit reached.
-
-Please wait for a minute and try again.
-
-This happens when too many requests are sent in a short time.
-"""
+    {e}
+    """
+    
 
     st.session_state.messages.append(
     {"role": "assistant", "content": answer}
