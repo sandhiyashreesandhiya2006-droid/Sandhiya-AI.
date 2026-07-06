@@ -52,3 +52,9 @@ streamlit run app.py
 🌐 Portfolio: https://sandhiya-data-portfolio.my.canva.site/
 
 💻 GitHub: https://github.com/sandhiyashreesandhiya2006-droid
+
+
+## 🌐 Live Demo
+
+🔗 https://sandhiya-ai-chatbot.streamlit.app/
+
