@@ -49,7 +49,7 @@ streamlit run app.py
 
 **Sandhiya Shree**
 
-🌐 Portfolio: https://sandhiya-data-portfolio.my.canva.site/
+🌐 Portfolio: https://sandhiya-portfolio-five.vercel.app/
 
 💻 GitHub: https://github.com/sandhiyashreesandhiya2006-droid
 
